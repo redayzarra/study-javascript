@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Arrays</title>
+  </head>
+
+  <body>
+    <button>Press me</button>
+    <script>
+      let todos = ['Get groceries', 'Wash car', 'Make dinner']; //Create an array containing the values shown 
+
+      todos.push('another todo'); //Pushed or added the string 'another todo' to our array
+      todos.pop(); //Pops the last element of our array, so the string 'another todo' is removed
+
+      todos.forEach(function(todoTitle) { //Creates a for loop that iterates through every value of the todos array, while also passing in the todoTitle argument
+        let element = document.createElement('div');
+        element.innerText = todoTitle;
+        document.body.appendChild(element);
+      });
+
+      //Exercise 7
+    </script>
+  </body>
+</html>
