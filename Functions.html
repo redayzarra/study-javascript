@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>ReDay's Todo App</title>
+  </head>
+
+  <body>
+    <button>Press me</button>
+    <script>
+      let todo1 = 'Get groceries';
+      let todo2 = 'Wash car';
+      let todo3 = 'Make dinner';
+
+      //Functions are reusable pieces of code that allow you to run code multiple times
+      function addTodo(todoTitle) { //Defines a function called addTodo that takes parameter todoTitle
+        let element = document.createElement('div');
+        element.innerText = todoTitle; //Adds the argument provided for todoTitle to be the innertext
+        document.body.appendChild(element);
+      }
+
+      addTodo(todo1); ///Calling the function above with the argument todo1
+      addTodo(todo2);
+      addTodo(todo3);
+
+      //Exercise 6
+      function greeting(firstName) {
+        console.log('I love you, ' + firstName);
+      }
+
+      function toUpper(str) {
+        console.log(str.toUpperCase());
+      }
+
+      function converter(length) {
+        console.log(length * 2.54);
+      }
+
+      greeting("Ashley");
+      toUpper("Ashley");
+      converter(12);
+    </script>
+  </body>
+</html>

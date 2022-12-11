@@ -4,22 +4,23 @@
   </head>
 
   <body>
+
     <button>Press me</button>
     <script>
       let todo1 = 'Get groceries';
       let todo2 = 'Wash car';
       let todo3 = 'Make dinner';
 
-      let element = document.createElement('div'); //Creates a new HTML div element in JS and saves it to a variable
-      element.innerText = todo1; //Sets the text inside the div to be the value of todo1
-      document.body.appendChild(element); //Adds an element to the end of the body, refers to the body tag
+      let element = document.createElement('div');
+      element.innerText = todo1;
+      document.body.appendChild(element);
 
       element = document.createElement('div');
       element.innerText = todo2;
       document.body.appendChild(element);
 
       element = document.createElement('div');
-      element.innerText = todo3
+      element.innerText = todo2;
       document.body.appendChild(element);
 
       //Exercise 5
@@ -31,5 +32,6 @@
       button.innerText = 'Click me';
       document.body.appendChild(button);
     </script>
+
   </body>
 </html>
