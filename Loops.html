@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Arrays</title>
+    <title>Loops</title>
   </head>
 
   <body>
@@ -18,6 +18,41 @@
       });
 
       //Exercise 7
+      function toUpper(words) { //Create a function called toUpper that takes an array parameter called words
+        let result = []; //Assign the variable result to an emtpy array
+
+        words.forEach(function(word) { //Create a for loop that iterates through the array words, and the variable word is every element in words
+          result.push(word.toUpperCase()); //Add the capitalized version of the string word to the array result
+        });
+        console.log(result); //Return result as the answer
+      }
+
+      function arrayDouble(givenArray) {
+        let answer = [];
+
+        givenArray.forEach(function(givenValue) {
+          answer.push(givenValue);
+          answer.push(givenValue);
+        });
+        console.log(answer);
+      }
+
+      function arraySum(numbers) {
+        let sum = 0;
+        
+        numbers.forEach(function(number) {
+          sum = sum + number;
+        });
+        console.log(sum);
+      }
+
+      let names = ["sweetheart", "darling", "baby"];
+      let nums = [1, 2, 3, -6]
+
+      toUpper(names);
+      arrayDouble(names);
+      arraySum(nums);
+      
     </script>
   </body>
 </html>
