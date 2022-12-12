@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Re-rendering after data changes</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/>
+    <button onclick = "addTodo()">Add todo</button>
+
+    <div id = "todo-list"></div>
+
+<!--Exercise 9-->
+    <div id = "cart"></div>
+    <button onclick = "addDiv('Apple')"> Apple </button>
+    <button onclick = "addDiv('Tomato')"> Tomato </button>
+    <button onclick = "addDiv('Eggs')"> Eggs </button>
+    <button onclick = "clearcart()"> Clear </button>
+
+    <input type="text" id = "converting">
+    <button onclick = "conCm()">Convert to cm</button>
+    <button onclick = "conIn()">Convert to in</button>
+    <div id = "result"></div>
+<!--Exercise 9-->
+
+    <script>
+      const todos = ['Get groceries', 'Wash car', 'Make dinner'];
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+        todos.push(title);
+        render();
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; //This clears out todos list and then later our code will add another element to list which will be appended to the div 
+
+        todos.forEach(function(todoTitle) {
+          const element = document.createElement('div');
+          element.innerText = todoTitle;
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+      });
+      }
+
+//Exercise 9
+      function addDiv(fruit) {
+        const mycart = document.getElementById('cart');
+        const fruitinside = document.createElement('div');
+        fruitinside.innerText = fruit;
+        mycart.appendChild(fruitinside);
+      }
+
+      function clearcart() {
+        document.getElementById('cart').innerHTML = '';
+      }
+
+      const resulthome = document.getElementById('result');
+      const convertvalue = document.getElementById('converting');
+      function conCm() {
+        givenCm = convertvalue.value;
+        inches = +givenCm * 2.54;
+        resulthome.innerText = inches;
+      }
+
+      function conIn() {
+        givenIn = convertvalue.value;
+        cm = +givenIn / 2.54;
+        resulthome.innerText = cm;
+      }
+    </script>
+  </body>
+</html>
