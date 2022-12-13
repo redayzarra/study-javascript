@@ -1,0 +1,167 @@
+<html>
+  <head>
+    <title>If-statements</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/>
+    <input id = "date-picker" type = "date"/>
+    <button onclick = "addTodo()">Add Todo</button>
+
+    <div id = "todo-list"></div>
+
+    <script>
+      let todos = [{ 
+        title: 'Get groceries',
+        dueDate: '2021-10-03',
+        id: 'id1'
+      }, {
+        title: 'Wash car',
+        dueDate: '2021-02-03',
+        id: 'id2'
+      }, {
+        title: 'Make dinner',
+        dueDate: '2021-04-03',
+        id: 'id3'
+      }]
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+
+        const id = '' + new Date().getTime(); 
+
+        todos.push({ 
+          title: title,
+          dueDate: dueDate,
+          id: id 
+        });
+        render();
+      }
+
+      function deleteTodo(event) { 
+        const deleteButton = event.target; 
+        const idToDelete = deleteButton.id; 
+
+        todos = todos.filter(function(todo) { //Reassigning the todos array with the filtered copy
+          //If the id of this todo matches idToDelete, return False
+          if (todo.id === idToDelete) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+
+        render();
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; 
+
+        todos.forEach(function(todo) {
+          const element = document.createElement('div'); 
+          element.innerText = todo.title + ' ' + todo.dueDate;
+
+          const deleteButton = document.createElement('button'); 
+          deleteButton.innerText = 'Delete';
+          deleteButton.style = 'margin-left: 12px';
+          deleteButton.onclick = deleteTodo; 
+          deleteButton.id = todo.id; 
+          element.appendChild(deleteButton); 
+
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+        }); 
+      }
+
+//Exercise 13
+      function max(nums) {
+        let maxnum = -Infinity; //Don't use 0 to setup maxnum because numbers in nums can be less than zero
+        nums.forEach(function(number) {
+          if (maxnum < number) {
+            maxnum = number;
+          }
+        });
+        return maxnum;
+      }
+
+      function min(nums) {
+        let minnum = -Infinity;
+        nums.forEach(function(number) {
+          if (minnum > number) {
+            minnum = number;
+          }
+        });
+        return minnum;
+      }
+
+      function greaterZero(nums) {
+        let aboutZero = -Infinity;
+        nums.forEach(function(number) {
+          if (number < 0) {
+            return;
+          } else if (number < aboutZero) {
+            aboutZero = number;
+          }
+        });
+        return aboutZero;
+      }
+
+      function pickApples(fruits) {
+        applespicked = 0;
+        const filteredfruits = fruits.filter(function(fruit) {
+          if (applespicked >= 2) {
+            return true;
+          } else if (fruit === 'apple') {
+            applespicked = applespicked + 1;
+            return false;
+          } else {
+            return true;
+          }
+        });
+        return filteredfruits;
+      }
+
+      function pickFruits (fruits) {
+        applespicked = 0;
+        orangespicked = 0;
+        const filteredfruits = fruits.filter(function(fruit) {
+          if (applespicked >= 2 || orangespicked >= 1) {
+            return true;
+          } else if (fruit === 'apple') {
+            applespicked = applespicked + 1;
+            return false;
+          } else if (fruit === 'orange') {
+            orangespicked = orangespicked + 1;
+            return false
+          } else {
+            return true;
+          }
+        });
+        return filteredfruits;
+      }
+
+      function pickLastApples(fruits) {
+        applespicked = 0;
+        const reversedfruits = fruits.reverse();
+        const filteredfruits = reversedfruits.filter(function(fruit) {
+          if (applespicked >= 2) {
+            return true;
+          } else if (fruit === 'apple') {
+            applespicked = applespicked + 1;
+            return false;
+          } else {
+            return true;
+          }
+        });
+        return filteredfruits.reverse();
+      }
+//Exercise 13
+    </script>
+  </body>
+</html>
