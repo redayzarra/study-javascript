@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Objects</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/>
+    <input id = "date-picker" type = "date"/>
+    <button onclick = "addTodo()">Add Todo</button>
+
+    <div id = "todo-list"></div>
+
+    <script>
+      const todos = ['Get groceries', 'Wash car', 'Make dinner'];
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+        todos.push(title);
+        render();
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; //This clears out todos list and then later our code will add another element to list which will be appended to the div 
+
+        todos.forEach(function(todoTitle) {
+          const element = document.createElement('div');
+          element.innerText = todoTitle;
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+      });
+      }
+    </script>
+  </body>
+</html>
