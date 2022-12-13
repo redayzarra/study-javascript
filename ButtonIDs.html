@@ -59,7 +59,7 @@
           const deleteButton = document.createElement('button'); //Create a button for deleting items from the Todo list
           deleteButton.innerText = 'Delete';
           deleteButton.style = 'margin-left: 12px'; //Added a left margin of 12 px to the delete button
-          deleteButton.onclick = deleteTodo(); //When the button is clicked, go ahead and call the deleteTodo() function
+          deleteButton.onclick = deleteTodo; //When the button is clicked, go ahead and call the deleteTodo() function
           deleteButton.id = todo.id; //The id of the button element is equal to the id of the corresponding todo from the todos array
           element.appendChild(deleteButton); //Add the delete button to the end of the element div
 

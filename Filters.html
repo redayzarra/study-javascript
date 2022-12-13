@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Filters and Boolean values</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/>
+    <input id = "date-picker" type = "date"/>
+    <button onclick = "addTodo()">Add Todo</button>
+
+    <div id = "todo-list"></div>
+
+    <script>
+      const todos = [{ 
+        title: 'Get groceries',
+        dueDate: '2021-10-03',
+        id: 'id1'
+      }, {
+        title: 'Wash car',
+        dueDate: '2021-02-03',
+        id: 'id2'
+      }, {
+        title: 'Make dinner',
+        dueDate: '2021-04-03',
+        id: 'id3'
+      }]
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+
+        const id = new Date().getTime(); 
+
+        todos.push({ 
+          title: title,
+          dueDate: dueDate,
+          id: id 
+        });
+        render();
+      }
+
+      function deleteTodo(event) { 
+        const deleteButton = event.target; 
+        const idToDelete = deleteButton.id; 
+
+        todos.filter(function(todo) {
+          return True;
+        });
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; 
+
+        todos.forEach(function(todo) {
+          const element = document.createElement('div'); 
+          element.innerText = todo.title + ' ' + todo.dueDate;
+
+          const deleteButton = document.createElement('button'); 
+          deleteButton.innerText = 'Delete';
+          deleteButton.style = 'margin-left: 12px';
+          deleteButton.onclick = deleteTodo; 
+          deleteButton.id = todo.id; 
+          element.appendChild(deleteButton); 
+
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+        }); 
+      }
+
+//Exercise 12
+      function upperStr(str) {
+        return str.toUpperCase(); //Returns the upperCase value of str and immediately stops the function
+      }
+
+      function aboveFreezing(temps) {
+        temps.filter(function(tempGiven) { //Iterates through the elements of temps and if the value of the inner function returns True, then it will keep the element. If False, then it will remove the element.
+          return tempGiven > 32; //Return True if the element of temps is more than 32, or false if less than 32
+        });
+      }
+
+      function removeRed (foodArray) {
+        foodArray.filter(function (foodItem) {
+          return foodItem.color !== 'red'; //In the dictionary foodItem, check to see if the key of color is not equal to the value of 'red'. If the value in the key (color) is 'red', then return false
+        });
+      }
+//Exercise 12
+    </script>
+  </body>
+</html>
