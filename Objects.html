@@ -11,7 +11,16 @@
     <div id = "todo-list"></div>
 
     <script>
-      const todos = ['Get groceries', 'Wash car', 'Make dinner'];
+      const todos = [{ //This is a dictionary, or hashmap, and it stores key-value pairs just like in python
+        title: 'Get groceries',
+        dueDate: '2021-10-03'
+      }, {
+        title: 'Wash car',
+        dueDate: '2021-02-03'
+      }, {
+        title: 'Make dinner',
+        dueDate: '2021-04-03'
+      }]
 
       render();
 
@@ -21,20 +30,22 @@
 
         const datePicker = document.getElementById('date-picker');
         const dueDate = datePicker.value;
-        todos.push(title);
+        todos.push({ //Pushes an enire dictionary to the todos array, which consists of dictionaries
+          title: title,
+          dueDate: dueDate
+        });
         render();
       }
 
       function render() {
         document.getElementById('todo-list').innerHTML = ''; //This clears out todos list and then later our code will add another element to list which will be appended to the div 
 
-        todos.forEach(function(todoTitle) {
+        todos.forEach(function(todo) {
           const element = document.createElement('div');
-          element.innerText = todoTitle;
+          element.innerText = todo.title + ' ' + todo.dueDate; //The text inside the new div called element is going to be the the value of title from each element of the array todos (which we are iterating)... a space to make it look neat... and the value of dueDate from each todo.
           const todolist = document.getElementById('todo-list')
           todolist.appendChild(element);
-      });
-      }
+      }); }
     </script>
   </body>
 </html>
