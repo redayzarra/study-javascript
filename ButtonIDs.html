@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <title>Button ID's</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/>
+    <input id = "date-picker" type = "date"/>
+    <button onclick = "addTodo()">Add Todo</button>
+
+    <div id = "todo-list"></div>
+
+    <script>
+      const todos = [{ 
+        title: 'Get groceries',
+        dueDate: '2021-10-03',
+        id: 'id1'
+      }, {
+        title: 'Wash car',
+        dueDate: '2021-02-03',
+        id: 'id2'
+      }, {
+        title: 'Make dinner',
+        dueDate: '2021-04-03',
+        id: 'id3'
+      }]
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+
+        const id = new Date().getTime(); //Creates a variable called id that is associated with a unique set of numbers
+
+        todos.push({ 
+          title: title,
+          dueDate: dueDate,
+          id: id //Add a key called id that has the value of the variable id from above, this gets pushed into the todos array
+        });
+        render();
+      }
+
+      function deleteTodo(event) { //This function is for deleting a specific item from the todo list, it takes in the event parameter which is an object that has many keys
+        const deleteButton = event.target; //The event.target tells us the id of the button being pressed, this allows us to identify which button was pressed
+        const idToDelete = deleteButton.id; //Sets the variable idToDelete equal to the id of the button that was pressed
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; 
+
+        todos.forEach(function(todo) {
+          const element = document.createElement('div'); 
+          element.innerText = todo.title + ' ' + todo.dueDate;
+
+          const deleteButton = document.createElement('button'); //Create a button for deleting items from the Todo list
+          deleteButton.innerText = 'Delete';
+          deleteButton.style = 'margin-left: 12px'; //Added a left margin of 12 px to the delete button
+          deleteButton.onclick = deleteTodo(); //When the button is clicked, go ahead and call the deleteTodo() function
+          deleteButton.id = todo.id; //The id of the button element is equal to the id of the corresponding todo from the todos array
+          element.appendChild(deleteButton); //Add the delete button to the end of the element div
+
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+        }); 
+      }
+
+//Exercise 11
+      function createCart(foods) {
+        const foodNames = object.keys(foods);
+
+        foodnames.forEach(function(name) {
+          const cartSpace = document.createElement('div');
+          const price = foods[name];
+          cartSpace.innerText = name + ' ' + price;
+
+          const addFood = document.createElement('button');
+          addFood.innerText = 'Add food';
+          addFood.onclick = function() {
+            total = total + price;
+          };
+          cartSpace.appendChild(addFood);
+          document.body.appendChild(cartSpace);
+        });
+      }
+    </script>
+  </body>
+</html>
