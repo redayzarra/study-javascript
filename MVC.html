@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>Model-View-Controller architecture</title>
+  </head>
+
+  <body>
+<!--Exercise 14-->
+
+<!--Exercise 14-->
+    <input id = "todo-title" type = "text"/>
+    <input id = "date-picker" type = "date"/>
+    <button onclick = "addTodo()">Add Todo</button>
+
+    <div id = "todo-list"></div>
+
+    <script>
+       
+      //MODEL SECTION - Saves and manages our data
+      let todos = [{ 
+        title: 'Get groceries',
+        dueDate: '2021-10-03',
+        id: 'id1'
+      }, {
+        title: 'Wash car',
+        dueDate: '2021-02-03',
+        id: 'id2'
+      }, {
+        title: 'Make dinner',
+        dueDate: '2021-04-03',
+        id: 'id3'
+      }]
+
+      function createTodo(title, dueDate) {
+        const id = '' + new Date().getTime(); 
+
+        todos.push({ 
+          title: title,
+          dueDate: dueDate,
+          id: id 
+        });
+      }
+      render();
+
+      function removeTodo(idToDelete) {
+        todos = todos.filter(function(todo) { 
+          if (todo.id === idToDelete) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+      }
+
+      //CONTROLLER SECTION - Responds to events from view and updates model
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+
+        createTodo(title, dueDate);
+        render();
+      }
+
+      function deleteTodo(event) { 
+        const deleteButton = event.target; 
+        const idToDelete = deleteButton.id; 
+
+        removeTodo(idToDelete);
+        render();
+      }
+
+      //VIEW SECTION - Manages and renders the visuals using data in Model
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; 
+
+        todos.forEach(function(todo) {
+          const element = document.createElement('div'); 
+          element.innerText = todo.title + ' ' + todo.dueDate;
+
+          const deleteButton = document.createElement('button'); 
+          deleteButton.innerText = 'Delete';
+          deleteButton.style = 'margin-left: 12px';
+          deleteButton.onclick = deleteTodo; 
+          deleteButton.id = todo.id; 
+          element.appendChild(deleteButton); 
+
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+        }); 
+      }
+    </script>
+  </body>
+</html>
