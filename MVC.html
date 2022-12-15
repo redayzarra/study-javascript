@@ -4,9 +4,6 @@
   </head>
 
   <body>
-<!--Exercise 14-->
-
-<!--Exercise 14-->
     <input id = "todo-title" type = "text"/>
     <input id = "date-picker" type = "date"/>
     <button onclick = "addTodo()">Add Todo</button>
@@ -51,6 +48,16 @@
         });
       }
 
+//Exercise 14
+      function toggleTodo(todoId, checked) {
+        todos.forEach(function (todo) {
+          if (todo.id === todoId) {
+            todo.isDone = checked;
+          }
+        });
+      }
+//Exercise 14
+
       //CONTROLLER SECTION - Responds to events from view and updates model
       function addTodo() {
         const textbox = document.getElementById('todo-title');
@@ -71,6 +78,15 @@
         render();
       }
 
+      function checkTodo(event) {
+        const checkbox = event.target;
+        const todoId = checkbox.dataset.todoId;
+        const checked = checkbox.checked;
+
+        toggleTodo(todoId, checked);
+        render();
+      }
+
       //VIEW SECTION - Manages and renders the visuals using data in Model
       function render() {
         document.getElementById('todo-list').innerHTML = ''; 
@@ -78,6 +94,18 @@
         todos.forEach(function(todo) {
           const element = document.createElement('div'); 
           element.innerText = todo.title + ' ' + todo.dueDate;
+//Exercise 14
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.onchange = checkTodo;
+          checkbox.dataset.todoId = todo.id;
+          if (todo.isDone === true) {
+            checkbox.checked = true;
+          } else {
+            checkbox.checked = false;
+          }
+          element.prepend(checkbox);
+//Exercise 14
 
           const deleteButton = document.createElement('button'); 
           deleteButton.innerText = 'Delete';
@@ -90,6 +118,8 @@
           todolist.appendChild(element);
         }); 
       }
+
+      render();
     </script>
   </body>
 </html>
