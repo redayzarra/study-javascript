@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Objects</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/> <!--Creates an input type that allows users to select a date-->
+    <input id = "date-picker" type = "date"/>
+    <button onclick = "addTodo()">Add Todo</button>
+
+    <div id = "todo-list"></div>
+
+<!--Exercise 10-->
+    <div id = "receipt"></div>
+<!--Exercise 10-->
+
+    <script>
+      const todos = [{ //This is a dictionary, or hashmap, and it stores key-value pairs just like in python
+        title: 'Get groceries',
+        dueDate: '2021-10-03'
+      }, {
+        title: 'Wash car',
+        dueDate: '2021-02-03'
+      }, {
+        title: 'Make dinner',
+        dueDate: '2021-04-03'
+      }]
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+        todos.push({ //Pushes an enire dictionary to the todos array, which consists of dictionaries
+          title: title,
+          dueDate: dueDate
+        });
+        render();
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; //This clears out todos list and then later our code will add another element to list which will be appended to the div 
+
+        todos.forEach(function(todo) {
+          const element = document.createElement('div');
+          element.innerText = todo.title + ' ' + todo.dueDate; //The text inside the new div called element is going to be the the value of title from each element of the array todos (which we are iterating)... a space to make it look neat... and the value of dueDate from each todo.
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+        }); 
+      }
+
+//Exercise 10
+      const cartArray = [
+        { name: 'Apple', price: 4, quantity: 2 },
+        { name: 'Orange', price: 3, quantity: 3 }
+      ];
+
+      function cartTotal(cartArray) {
+        let total = 0
+        cartArray.forEach(function(item) {
+          let itemTotal = item.price * item.quantity;
+          total = total + itemTotal
+          console.log(total);
+        });
+      }
+
+      function displayReceipt(cartArray) {
+        cartTotal();
+        document.getElementById('receipt').innerHTML = '';
+        cartArray.forEach(function(item) {
+          const receiptSpace = document.getElementById('receipt'); //Identifying and storing the div in a variable where I can add more divs inside later for each item
+          const receiptLine = document.createElement('div');
+          const totalLine = document.createElement('div');
+          receiptLine.innerText = item.name + ' $' + item.price + ' * ' + item.quantity;
+          totalLine.innerText = 'Cart total = $' + total
+          receiptSpace.appendChild(receiptLine);
+          receiptSpace.appendChild(totalLine);
+        });
+      }
+//Exercise 10
+    </script>
+  </body>
+</html>

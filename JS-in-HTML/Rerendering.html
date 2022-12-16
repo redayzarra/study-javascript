@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Re-rendering after data changes</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/>
+    <button onclick = "addTodo()">Add todo</button>
+
+    <div id = "todo-list"></div>
+
+<!--Exercise 9-->
+    <div id = "cart"></div> <!--Adds a way to ID this div so we can add Javscript to it-->
+    <button onclick = "addDiv('Apple')"> Apple </button> <!--When the button is clicked, call the function with the given argument-->
+    <button onclick = "addDiv('Tomato')"> Tomato </button>
+    <button onclick = "addDiv('Eggs')"> Eggs </button>
+    <button onclick = "clearcart()"> Clear </button> <!--Runs the clearCart() function when clicked-->
+
+    <input type="text" id = "converting">
+    <button onclick = "conCm()">Convert to cm</button>
+    <button onclick = "conIn()">Convert to in</button>
+    <div id = "result"></div>
+<!--Exercise 9-->
+
+    <script>
+      const todos = ['Get groceries', 'Wash car', 'Make dinner'];
+
+      render();
+
+      function addTodo() {
+        const textbox = document.getElementById('todo-title');
+        const title = textbox.value;
+        todos.push(title);
+        render();
+      }
+
+      function render() {
+        document.getElementById('todo-list').innerHTML = ''; //This clears out todos list and then later our code will add another element to list which will be appended to the div 
+
+        todos.forEach(function(todoTitle) {
+          const element = document.createElement('div');
+          element.innerText = todoTitle;
+          const todolist = document.getElementById('todo-list')
+          todolist.appendChild(element);
+      });
+      }
+
+//Exercise 9
+      function addDiv(fruit) { //Defines a function that we can call at any time
+        const mycart = document.getElementById('cart'); //Assigns the div element called cart to a variable called mycart
+        const fruitinside = document.createElement('div'); //Creates a variable called fruitinside that is a div
+        fruitinside.innerText = fruit; //The text inside the div called fruitinside, should be the argument (fruit) passed into the function addDiv()
+        mycart.appendChild(fruitinside); //Add the div element called fruitinside, into mycart 
+      }
+
+      function clearcart() {
+        document.getElementById('cart').innerHTML = ''; //Clear the div called cart
+      }
+
+      const resulthome = document.getElementById('result'); 
+      const convertvalue = document.getElementById('converting');
+      function conCm() {
+        givenCm = convertvalue.value;
+        inches = +givenCm * 2.54;
+        resulthome.innerText = inches;
+      }
+
+      function conIn() {
+        givenIn = convertvalue.value;
+        cm = +givenIn / 2.54;
+        resulthome.innerText = cm;
+      }
+    </script>
+  </body>
+</html>

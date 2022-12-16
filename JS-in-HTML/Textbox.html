@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>Textbox</title>
+  </head>
+
+  <body>
+    <input id = "todo-title" type = "text"/> <!--The input tag allows the user to add an input, while the type tells HTML what kind of input we wanna use. The id is simply a way for our Javascript to understand how to get the input-->
+
+    <button onclick = "addTodo()"> <!--When the button clicks, call the addTodo function-->
+      Add task
+    </button>
+
+<!--Exercise 8-->
+    <button id = "todo-button" onclick = "buttonDone()"> Click me </button>
+
+    <div id = "counter"> 0 </div>
+    <button onclick = "countUp()"> Up </button>
+
+    <button onclick = "countDown()"> Down </button>
+
+    <button onclick = "buttonAdder()"> Add count </button>
+
+    <button onclick = "textAdder()">Add word</button>
+<!--Exercise 8-->
+
+    <script>
+      let todos = ['Get groceries', 'Wash car', 'Make dinner'];
+
+      todos.forEach(function(todoTitle) {
+        let element = document.createElement('div');
+        element.innerText = todoTitle;
+        document.body.appendChild(element);
+      });
+
+      function addTodo() {
+        let textbox = document.getElementById('todo-title'); //Allows you to fetch data from the textbox element from the id and store it in the variable
+        let title = textbox.value; //The values from the textbox is stored in the variable title
+        todos.push(title);
+      }
+
+      //Exercise 8
+      function buttonDone() {
+        let buttoned = document.getElementById('todo-button');
+        buttoned.innerText = "Done";
+      }
+
+      let count = 0
+      function countUp() {
+        let countered = document.getElementById('counter');
+        count = count + 1;
+        countered.innerText = count;
+      }
+
+      function countDown() {
+        let countered = document.getElementById('counter');
+        count = count - 1;
+        countered.innerText = count;
+      }
+
+      function buttonAdder() {
+        let newelement = document.createElement('div');
+        newelement.innerText = count;
+        document.body.appendChild(newelement)
+      }
+
+      function textAdder() {
+        let anotherelement = document.createElement('div');
+        let newtext = document.getElementById('todo-title');
+        let newword = newtext.value;
+        anotherelement.innerText = newword;
+        document.body.appendChild(anotherelement);
+      }
+      //Exercise 8
+    </script>
+  </body>
+</html>

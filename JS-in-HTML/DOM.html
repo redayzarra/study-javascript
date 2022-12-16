@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Document Object Model</title>
+  </head>
+
+  <body>
+
+    <button>Press me</button>
+    <script>
+      let todo1 = 'Get groceries';
+      let todo2 = 'Wash car';
+      let todo3 = 'Make dinner';
+
+      let element = document.createElement('div');
+      element.innerText = todo1;
+      document.body.appendChild(element);
+
+      element = document.createElement('div');
+      element.innerText = todo2;
+      document.body.appendChild(element);
+
+      element = document.createElement('div');
+      element.innerText = todo2;
+      document.body.appendChild(element);
+
+      //Exercise 5
+      let button = document.createElement('button');
+      button.innerText = 'Click me';
+      document.body.appendChild(button);
+
+      let button = document.createElement('button');
+      button.innerText = 'Click me';
+      document.body.appendChild(button);
+    </script>
+
+  </body>
+</html>
